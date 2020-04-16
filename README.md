@@ -1,6 +1,6 @@
 # Deployment
 
-In order to deploy the backend for our React project, we need to setup our environments variables properly. In general all environment specific values need to be in the .env files and values you don't want to upload to the repository because of security risks. For this project that are at least the following values:
+In order to deploy the backend for our MEAN project, we need to setup our environments variables properly. In general all environment specific values need to be in the .env files and values you don't want to upload to the repository because of security risks. For this project that are at least the following values:
 
 * the mongodb connection string
 * the port number
@@ -25,4 +25,4 @@ client_origin_b=https://localhost:3001
 mongodb_connection_string=mongodb://localhost/ironhack
 ````
 
-Does it still work? Good! Commit your changes, create an heroko dyno with the heroku cli and push to heroku. These step are the same as in module 2. Wait with adding the .env variables in heroku after you deployed your client as well.
+Does it still work? Good! Commit your changes, create a heroko dyno with the heroku cli and push to heroku. These step are the same as in module 2. Wait with adding the .env variables in heroku after you deployed your client (REACT) as well.
