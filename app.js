@@ -4,8 +4,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
 const mongoose = require("mongoose");
-
-
+require("dotenv").config();
+var session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 mongoose.connect("mongodb://localhost:27017/ironhack")
     .then(()=> {
         console.log("Connected to mongodb");
@@ -16,7 +17,21 @@ mongoose.connect("mongodb://localhost:27017/ironhack")
 
 var app = express();
 
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: ["http://localhost:3001", "https://localhost:3001"]
+}));
+
+app.use(session({
+    cookie: { secure: "auto" },
+    secret: process.env.SESSION_SECRET,
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: (14 * 24 * 60 * 60), // = 14 days. Default
+        autoRemove: 'native' // Default
+    })
+}));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -30,7 +45,7 @@ function protect(req,res,next){
 
 app.use('/', require('./routes/name'));
 app.use('/students', require('./routes/students'));
-app.use('/beers', protect, require('./routes/beers'));
+app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/users'));
 
 module.exports = app;
