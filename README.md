@@ -25,4 +25,4 @@ client_origin_b=https://localhost:3001
 mongodb_connection_string=mongodb://localhost/ironhack
 ````
 
-Now, test if your project still works locally. Does it? Good! Commit your changes, create a heroko dyno with the heroku cli and push to heroku. These step are the same as in module 2. Wait with adding the .env variables in heroku after you deployed your client (REACT) as well.
+Don't forget the dotenv package! Now, test if your project still works locally. Does it? Good! Commit your changes, create a heroko dyno with the heroku cli and push to heroku (`heroku login` `heroku create` `git push heroku master`). These step are the same as in module 2. Wait with adding the .env variables in heroku after you deployed your client (REACT) as well.
