@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 var session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-mongoose.connect("mongodb://localhost:27017/ironhack")
+mongoose.connect(process.env.mongodb_connection_string)
     .then(()=> {
         console.log("Connected to mongodb");
     })
@@ -19,7 +19,7 @@ var app = express();
 
 app.use(cors({
     credentials: true,
-    origin: ["http://localhost:3001", "https://localhost:3001"]
+    origin: [process.env.client_origin_a, process.env.client_origin_b]
 }));
 
 app.use(session({
